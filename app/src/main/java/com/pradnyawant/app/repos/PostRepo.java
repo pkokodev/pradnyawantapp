@@ -18,12 +18,12 @@ import retrofit2.Response;
 public class PostRepo {
     private ApiInterface apiInterface;
 
-    public MutableLiveData<List<Post>> getPosts() {
+    public MutableLiveData<List<Post>> getPosts(int pageNumber) {
         apiInterface = ApiClient.getInstnace().create(ApiInterface.class);
 
         MutableLiveData<List<Post>> mutableLiveData = new MutableLiveData<>();
 
-        Call<List<Post>> postsCall = apiInterface.getPosts();
+        Call<List<Post>> postsCall = apiInterface.getPosts(pageNumber);
         postsCall.enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {

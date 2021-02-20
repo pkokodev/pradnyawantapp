@@ -17,11 +17,11 @@ public class PostsViewModel extends ViewModel {
         this.postRepo = new PostRepo();
     }
 
-    public LiveData<List<Post>> getPosts() {
+    public LiveData<List<Post>> getPosts(int pageNumber) {
         if (posts == null) {
             posts = new MutableLiveData<List<Post>>();
-            posts = postRepo.getPosts();
         }
+        posts = postRepo.getPosts(pageNumber);
         return posts;
     }
 

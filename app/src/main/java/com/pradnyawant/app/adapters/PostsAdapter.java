@@ -1,5 +1,6 @@
 package com.pradnyawant.app.adapters;
 
+import android.content.Context;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,15 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.pradnyawant.app.R;
+import com.pradnyawant.app.interfaces.LoadMoreListener;
 import com.pradnyawant.app.models.Post;
 
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsViewHolder> {
     private List<Post> posts;
-
-    public PostsAdapter(List<Post> posts) {
+    private LoadMoreListener loadMoreListener;
+    public PostsAdapter(List<Post> posts, Context context) {
         this.posts = posts;
+        loadMoreListener = (LoadMoreListener) context;
     }
 
     @NonNull
@@ -32,6 +35,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsViewHol
 
     @Override
     public void onBindViewHolder(@NonNull PostsViewHolder holder, int position) {
+        if(position + 2 == posts.size()){
+            loadMoreListener.onLoadMore();
+        }
         holder.setData(position);
     }
 
