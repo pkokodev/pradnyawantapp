@@ -13,8 +13,8 @@ public class PostsViewModel extends ViewModel {
     private MutableLiveData<List<Post>> posts;
     private PostRepo postRepo;
 
-    public PostsViewModel(PostRepo postRepo) {
-        this.postRepo = postRepo;
+    public PostsViewModel() {
+        this.postRepo = new PostRepo();
     }
 
     public LiveData<List<Post>> getPosts() {
